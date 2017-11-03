@@ -1,8 +1,15 @@
 # projectDemoSsm
 The demo for SSM(spring+spring mvc+mybatis) automatically generate sqlmapper by mybatis
+
+You can contact me by sending email to me, if you have a problem.
+Email address is: eric_li@live.cn
+
 when you run,
 you shoud alter the file db.properties and generatorConfig.xml in the /src/main/resource directory, 
 with correct username and PWD of your mySql DB
+
+li Shaoke 
+2017.11.03
 
 The table struct:
 -- ----------------------------
