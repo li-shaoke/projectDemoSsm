@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!--
+    此处 需要 将本地的MAVEN仓库中的mysql驱动引入进来
+       否则报错： Caused by: java.lang.ClassNotFoundException: com.mysql.jdbc.Driver
+    -->
+    <classPathEntry location="G:\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>
+
+    <context id="mysqlgenerator" targetRuntime="MyBatis3">
+        <!--生成注释-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="false" />
+            <property name="suppressDate" value="true" />
+        </commentGenerator>
+        <!-- 配置数据库连接 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://IP:端口号/库名?useUnicode=true&amp;characterEncoding=utf-8&amp;useInformationSchema=true"
+                        userId="用户名"
+                        password="密码">
+            <property name="useInformationSchema" value="true"></property>
+        </jdbcConnection>
+
+        <!-- 指定javaBean生成的位置 -->
+        <javaModelGenerator targetPackage="com.lsk.domain" targetProject="src/main/java" >
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="true" />
+            <!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!--指定sql映射文件生成的位置 -->
+        <sqlMapGenerator targetPackage="com.lsk.dao" targetProject="src/main/java" >
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- 指定dao接口生成的位置，mapper接口 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lsk.dao" targetProject="src/main/java" >
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- table表生成对应的DoaminObject -->
+        <table tableName="TestUserTable" domainObjectName="User"></table>
+
+    </context>
+
+</generatorConfiguration>
